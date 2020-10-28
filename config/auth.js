@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 function verifyToken(token, res) {
   return new Promise(async (resolve, reject) => {
     try {
-      const payload = await jwt.verify(token, `${process.env.JWT_SECRET}`);
+      const payload = await jwt.verify(token, `4haha1998`);
       resolve(payload.data);
     } catch (error) {
       res.sendStatus(403);

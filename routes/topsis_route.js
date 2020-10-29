@@ -3,10 +3,10 @@ const router = express.Router();
 const auth = require("../config/auth");
 const db = require("../config/connection");
 
-const configMoora = require("../method/config");
+const configTopsis = require("../method/config");
 const preferenceConversion = require("../method/preferenceConversion");
 const normalize = require("../method/normalize");
-const moora = require("../method/moora/moora");
+const topsis = require("../method/topsis/topsis");
 
 router.get("/", auth, (req, res) => {
   let sql =
@@ -20,24 +20,25 @@ router.get("/", auth, (req, res) => {
       });
     });
 
-    const decisionMatrix = preferenceConversion(alter, configMoora.preference);
+    const decisionMatrix = preferenceConversion(alter, configTopsis.preference);
     const normalizedDecisionmatrix = normalize(decisionMatrix, {
       min: 1,
       max: 3,
     });
 
-    const mooraResult = moora(
+    const topsisResult = topsis(
       normalizedDecisionmatrix,
-      configMoora.weight,
-      configMoora.isBenefit
+      configTopsis.weight,
+      configTopsis.isBenefit
     );
+
     const response = {
       decisionMatrix,
       normalizedDecisionmatrix,
-      ...mooraResult,
+      ...topsisResult,
     };
     console.log(response);
-    return res.json(response);
+    return res.json(decisionMatrix);
   });
 });
 

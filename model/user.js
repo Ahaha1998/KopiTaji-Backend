@@ -17,4 +17,12 @@ module.exports = {
       res.json({ token, login: 'Success' })
     });
   },
+  select: async (req, res) => {
+    let sql = "SEELCT * FROM user";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log(result);
+      res.send("User fetched..");
+    });
+  },
 };

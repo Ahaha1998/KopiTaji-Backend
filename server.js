@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 // Connect to Database
 require("./config/connection");
 
 //Express Middleware
+app.use(cors());
 app.use(express.json());
 
 //Index Route

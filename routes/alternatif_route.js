@@ -4,7 +4,7 @@ const auth = require("../config/auth");
 
 const { select, insert, update, destroy } = require("../model/alternatif");
 
-router.get("/", auth, select);
+router.get("/", select);
 router.post("/", auth, insert);
 router.put("/:id", auth, update);
 router.delete("/:id", auth, destroy);

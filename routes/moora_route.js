@@ -8,7 +8,7 @@ const preferenceConversion = require("../method/preferenceConversion");
 const normalize = require("../method/normalize");
 const moora = require("../method/moora/moora");
 
-router.get("/", auth, (req, res) => {
+router.get("/", (req, res) => {
   let sql =
     "SELECT kriteria_air, kriteria_kotoran, kriteria_serangga, kriteria_bau FROM alternatif";
   db.query(sql, (err, result) => {
@@ -36,7 +36,6 @@ router.get("/", auth, (req, res) => {
       normalizedDecisionmatrix,
       ...mooraResult,
     };
-    console.log(response);
     return res.json(response);
   });
 });

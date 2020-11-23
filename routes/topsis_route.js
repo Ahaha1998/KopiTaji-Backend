@@ -8,7 +8,7 @@ const preferenceConversion = require("../method/preferenceConversion");
 const normalize = require("../method/normalize");
 const topsis = require("../method/topsis/topsis");
 
-router.get("/", auth, (req, res) => {
+router.get("/", (req, res) => {
   let sql =
     "SELECT kriteria_air, kriteria_kotoran, kriteria_serangga, kriteria_bau FROM alternatif";
   db.query(sql, (err, result) => {
@@ -38,7 +38,7 @@ router.get("/", auth, (req, res) => {
       ...topsisResult,
     };
     console.log(response);
-    return res.json(decisionMatrix);
+    return res.json(response);
   });
 });
 

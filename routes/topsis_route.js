@@ -37,7 +37,7 @@ router.get("/", (req, res) => {
       normalizedDecisionmatrix,
       ...topsisResult,
     };
-    console.log(response);
+    console.log(normalizedDecisionmatrix);
     return res.json(response);
   });
 });
